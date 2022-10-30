@@ -2,13 +2,16 @@ import React from 'react';
 import { AppProvider } from '../../context';
 import RegistrationForm from '../form/RegistrationForm';
 import AppLayout from './AppLayout';
+import LocaleProvider from './LocaleProvider';
 
 const App = () => {
   return (
     <AppProvider>
-      <AppLayout>
-        <RegistrationForm />
-      </AppLayout>
+      <LocaleProvider>
+        <AppLayout>
+          <RegistrationForm />
+        </AppLayout>
+      </LocaleProvider>
     </AppProvider>
   );
 };
