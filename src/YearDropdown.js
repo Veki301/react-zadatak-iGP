@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from './context';
+import LocaleService from './service/locale/LocaleService';
 
 const YearDropdown = () => {
-  const { selectedYear, setSelectedYear, english, spanish } =
-    useContext(AppContext);
+  const t = LocaleService.translate;
+  const { selectedYear, setSelectedYear } = useContext(AppContext);
   const [isActive, setIsActive] = useState(false);
   const options = [
     '2022',
@@ -24,8 +25,7 @@ const YearDropdown = () => {
   return (
     <div className="dropdown dropdown-style">
       <h4 className="dropdown-header header-label">
-        {english && 'Expiration Year'}
-        {spanish && 'Año de Vencimiento'}
+        {t('YEAR_DROPDOWN.TITLE')}
       </h4>
       <div className="dropdown-btn" onClick={() => setIsActive(!isActive)}>
         {selectedYear}

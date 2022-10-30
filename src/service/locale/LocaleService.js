@@ -3,7 +3,7 @@ import Polyglot from 'node-polyglot';
 // global instance
 let polyglot;
 
-export default class LocalizeService {
+export default class LocaleService {
   static initLocalization(locale, messages) {
     const localeMessages = locale && messages[locale] ? messages[locale] : null;
 

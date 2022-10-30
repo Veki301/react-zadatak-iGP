@@ -4,10 +4,10 @@ import MESSAGES from '../../service/locale/messages';
 
 const LocaleContext = React.createContext();
 
-export const useTranslate = (message) => LocaleService.translate(message);
-
 const LocaleProvider = ({ children }) => {
   const [locale, setLocale] = useState('en');
+
+  LocaleService.initLocalization(locale, MESSAGES);
 
   useEffect(() => {
     LocaleService.initLocalization(locale, MESSAGES);
@@ -20,4 +20,4 @@ const LocaleProvider = ({ children }) => {
   );
 };
 
-export default LocaleProvider;
+export { LocaleContext, LocaleProvider };

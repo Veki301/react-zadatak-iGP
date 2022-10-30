@@ -2,7 +2,7 @@ import React from 'react';
 import { AppProvider } from '../../context';
 import RegistrationForm from '../form/RegistrationForm';
 import AppLayout from './AppLayout';
-import LocaleProvider from './LocaleProvider';
+import { LocaleProvider } from './LocaleProvider';
 
 const App = () => {
   return (

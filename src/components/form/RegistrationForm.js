@@ -1,23 +1,17 @@
 import React, { useEffect, useContext } from 'react';
-import { terms } from '../../termsOfService';
-import { spanishTerms } from '../../termsOfSpanish';
 import GenderDropdown from '../../GenderDropdown';
 import CountryDropdown from '../../CountryDropdown';
 import MonthDropdown from '../../MonthDropdown';
 import YearDropdown from '../../YearDropdown';
 import { AppContext } from '../../context';
 import PropagateLoader from 'react-spinners/PropagateLoader';
+import LocaleService from '../../service/locale/LocaleService';
 
 const RegistrationForm = () => {
+  const t = LocaleService.translate;
   const {
     count,
     setCount,
-    english,
-    spanish,
-    selectedMonth,
-    setSelectedMonth,
-    selectedYear,
-    setSelectedYear,
     showTerms,
     setShowTerms,
     formValues,
@@ -27,8 +21,6 @@ const RegistrationForm = () => {
     handleSubmit,
     handleEnglish,
     handleSpanish,
-    selectedGender,
-    selectedCountry,
     loadingStep,
     setLoadingStep,
     formLoader,
@@ -55,7 +47,7 @@ const RegistrationForm = () => {
     <>
       {formLoader && Object.keys(formErrors).length === 0 && isSubmit && (
         <div className="registration-complete">
-          {english ? 'Registration Complete' : 'Registro Completo'}
+          {t('FORM.REGISTRATION_COMPLETE')}
         </div>
       )}
       {count < 4 ? (
@@ -64,7 +56,7 @@ const RegistrationForm = () => {
           <button onClick={handleSpanish} className="spa-btn"></button>
         </div>
       ) : (
-        <div className="language-container language-container-step4">
+        <div className="language-container">
           <button onClick={handleEnglish} className="eng-btn"></button>
           <button onClick={handleSpanish} className="spa-btn"></button>
         </div>
@@ -108,8 +100,7 @@ const RegistrationForm = () => {
                 <div>
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'First Name'}
-                      {spanish && 'El Primer Nombre'}
+                      {t('FORM.FIRST_NAME_FIELD_TITLE')}
                     </label>
                     <input
                       placeholder="Sofia"
@@ -120,35 +111,34 @@ const RegistrationForm = () => {
                       value={formValues.firstName}
                     />
                   </div>
-                  <p className="error-message">{formErrors.firstName}</p>
+                  {/* <p className="error-message">{formErrors.firstName}</p> */}
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Last Name'}
-                      {spanish && 'El Apellido'}
+                      {t('FORM.LAST_NAME_FIELD_TITLE')}
                     </label>
                     <input
                       placeholder="Vergara"
                       type="text"
                       className="form-control input-control"
                       name="lastName"
-                      errorMessage="Last Name should contain the text only and range from 2-16 characters"
+                      //errorMessage="Last Name should contain the text only and range from 2-16 characters"
                       onChange={handleChange}
                       value={formValues.lastName}
                     />
                   </div>
-                  <p className="error-message">{formErrors.lastName}</p>
+                  {/* <p className="error-message">{formErrors.lastName}</p> */}
                   <div className="form-group">
                     <GenderDropdown />
-                    {!selectedGender && isSubmit ? (
+                    {/*!selectedGender && isSubmit ? (
                       <p className="error-message">
+                        Pick a gender
                         {english ? 'Pick a gender' : 'Elige un género'}
                       </p>
-                    ) : null}
+                    ) : null*/}
                   </div>
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Date of Birth'}
-                      {spanish && 'Fecha de Nacimiento'}
+                      {t('FORM.BIRTH_DATE_FIELD_TITLE')}
                     </label>
                     <input
                       type="date"
@@ -162,26 +152,25 @@ const RegistrationForm = () => {
                   <p className="error-message">{formErrors.date}</p>
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Phone'}
-                      {spanish && 'Teléfono'}
+                      {t('FORM.TELEPHONE_FIELD_TITLE')}
                     </label>
                     <input
                       placeholder="00385955191714"
                       type="tel"
                       className="form-control"
                       name="phone"
-                      errorMessage=""
+                      //errorMessage=""
                       onChange={handleChange}
                       value={formValues.phone}
                     />
                   </div>
-                  <p className="error-message">{formErrors.phone}</p>
+                  {/* <p className="error-message">{formErrors.phone}</p> */}
                   <CountryDropdown />
-                  {!selectedCountry && isSubmit ? (
+                  {/*!selectedCountry && isSubmit ? (
                     <p className="error-message">
                       {english ? 'Pick a country' : 'Elige un país'}
                     </p>
-                  ) : null}
+                  ) : null*/}
                 </div>
               )}
             </>
@@ -199,20 +188,19 @@ const RegistrationForm = () => {
                 <div>
                   <div className="form-group form-transition">
                     <label className="form-label">
-                      {english && 'Username'}
-                      {spanish && 'Nombre de Usuario'}
+                      {t('FORM.USERNAME_FIELD_TITLE')}
                     </label>
                     <input
                       placeholder="sofia_v_222"
                       type="text"
                       className="form-control"
                       name="username"
-                      errorMessage=""
+                      //errorMessage=""
                       onChange={handleChange}
                       value={formValues.username}
                     />
                   </div>
-                  <p className="error-message">{formErrors.username}</p>
+                  {/* <p className="error-message">{formErrors.username}</p> */}
                   <div className="form-group">
                     <label className="form-label">Email</label>
                     <input
@@ -220,7 +208,7 @@ const RegistrationForm = () => {
                       type="email"
                       className="form-control"
                       name="email"
-                      errorMessage="It should be a valid email address!"
+                      //errorMessage="It should be a valid email address!"
                       onChange={handleChange}
                       value={formValues.email}
                     />
@@ -228,35 +216,33 @@ const RegistrationForm = () => {
                   <p className="error-message">{formErrors.email}</p>
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Password'}
-                      {spanish && 'La Contraseña'}
+                      {t('FORM.PASSWORD_FIELD_TITLE')}
                     </label>
                     <input
                       placeholder="Sofia!7111993"
                       type="password"
                       className="form-control"
                       name="password"
-                      errorMessage="Password should be 8-12 characters and it should include at least 1 letter 1 number and 1 special character!"
+                      //errorMessage="Password should be 8-12 characters and it should include at least 1 letter 1 number and 1 special character!"
                       onChange={handleChange}
                       value={formValues.password}
                     />
                   </div>
-                  <p className="error-message">{formErrors.password}</p>
+                  {/* <p className="error-message">{formErrors.password}</p> */}
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Confirm Password'}
-                      {spanish && 'Confirmar Contraseña'}
+                      {t('FORM.CONFIRM_PASSWORD_FIELD_TITLE')}
                     </label>
                     <input
                       type="password"
                       className="form-control"
                       name="confirmPassword"
-                      errorMessage="Passwords do not match!"
+                      //errorMessage="Passwords do not match!"
                       onChange={handleChange}
                       value={formValues.confirmPassword}
                     />
                   </div>
-                  <p className="error-message">{formErrors.confirmPassword}</p>
+                  {/* <p className="error-message">{formErrors.confirmPassword}</p> */}
                 </div>
               )}
             </>
@@ -274,8 +260,7 @@ const RegistrationForm = () => {
                 <div>
                   <div className="form-group">
                     <label className="form-label">
-                      {english && 'Credit Card Number (AMEX)'}
-                      {spanish && 'Número de Tarjeta de Crédito (AMEX)'}
+                      {t('FORM.CREDIT_CARD_FIELD_TITLE')}
                     </label>
                     <input
                       type="tel"
@@ -287,30 +272,20 @@ const RegistrationForm = () => {
                       value={formValues.creditCard}
                     />
                   </div>
-                  <p className="error-message">{formErrors.creditCard}</p>
+                  {/* <p className="error-message">{formErrors.creditCard}</p> */}
                   <div className="mm-yy-dropdown-container">
-                    <MonthDropdown
-                      selectedMonth={selectedMonth}
-                      setSelectedMonth={setSelectedMonth}
-                      english={english}
-                      spanish={spanish}
-                    />
-                    {!selectedMonth && isSubmit ? (
+                    <MonthDropdown />
+                    {/*!selectedMonth && isSubmit ? (
                       <p className="error-message error-message-margin">
                         {english ? 'Pick a month' : 'Elige un mes'}
                       </p>
-                    ) : null}
-                    <YearDropdown
-                      selectedYear={selectedYear}
-                      setSelectedYear={setSelectedYear}
-                      english={english}
-                      spanish={spanish}
-                    />
-                    {!selectedYear && isSubmit ? (
+                    ) : null*/}
+                    <YearDropdown />
+                    {/*!selectedYear && isSubmit ? (
                       <p className="error-message error-message-margin">
                         {english ? 'Pick a month' : 'Elige un año'}
                       </p>
-                    ) : null}
+                    ) : null*/}
                   </div>
                   <div className="form-group">
                     <label className="form-label">CVV</label>
@@ -323,7 +298,7 @@ const RegistrationForm = () => {
                       value={formValues.cvn}
                     />
                   </div>
-                  <p className="error-message">{formErrors.cvn}</p>
+                  {/* <p className="error-message">{formErrors.cvn}</p> */}
                 </div>
               )}
             </>
@@ -341,51 +316,38 @@ const RegistrationForm = () => {
                 <div className="terms-body">
                   <div className="terms-box">
                     <div className="terms-text">
-                      <h2>
-                        {english && 'terms of service'}
-                        {spanish && 'términos de servicio'}
-                      </h2>
-                      <p>
-                        {english && 'Last Edit: 07/26/2022'}
-                        {spanish && 'Última Edición: 26/07/2022'}
-                      </p>
-                      <p>
-                        {english && 'Greetings Users,'}
-                        {spanish && 'Saludos Usuarios,'}
-                      </p>
-                      {english && terms}
-                      {spanish && spanishTerms}
+                      <h2>{t('TOS.TITLE')}</h2>
+                      <p>{t('TOS.LAST_EDIT_LABEL', { date: '07/26/2022' })}</p>
+                      <p>{t('TOS.GREETING_LABEL')}</p>
+                      {/* Purify after rethinking the whole form */}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: t('TOS.CONTENT_HTML'),
+                        }}
+                      />
                     </div>
                     <h3>
-                      {english && 'I agree to the '}
-                      {spanish && 'Estoy de acuerdo con la'}
-                      <span>
-                        {english && 'Terms of Service'}
-                        {spanish && 'Términos de Servicio'}
-                      </span>
-                      {english && ' and I read the Privacy Notice.'}
-                      {spanish && ' y leí el Aviso de Privacidad.'}
+                      {t('TOS.FOOTER_LABEL_1')}
+                      <span>{t('TOS.FOOTER_LABEL_2')}</span>
+                      {t('TOS.FOOTER_LABEL_3')}
                     </h3>
                     <div className="terms-buttons">
                       {showTerms && count === 4 && (
                         <button type="submit" className="submit-btn">
-                          {english && 'Submit'}
-                          {spanish && 'Enviar'}
+                          {t('COMMON.ACTION_SUBMIT')}
                         </button>
                       )}
                       <button
                         className="btn-accept red-btn"
                         onClick={() => setShowTerms(true)}
                       >
-                        {english && 'Accept'}
-                        {spanish && 'Aceptar'}
+                        {t('COMMON.ACTION_ACCEPT')}
                       </button>
                       <button
                         className="btn-decline gray-btn"
                         onClick={() => setShowTerms(false)}
                       >
-                        {english && 'Decline'}
-                        {spanish && 'Rechazar'}
+                        {t('COMMON.ACTION_DECLINE')}
                       </button>
                     </div>
                   </div>
@@ -400,8 +362,7 @@ const RegistrationForm = () => {
               onClick={() => setCount(count - 1)}
               disabled={count < 2}
             >
-              {english && 'Back'}
-              {spanish && 'Espalda'}
+              {t('COMMON.ACTION_BACK')}
             </button>
           ) : null}
         </form>
@@ -412,8 +373,7 @@ const RegistrationForm = () => {
             onClick={() => setCount(count - 1)}
             disabled={count < 2}
           >
-            {english && 'Back'}
-            {spanish && 'Espalda'}
+            {t('COMMON.ACTION_BACK')}
           </button>
         ) : null}
         {count < 4 ? (
@@ -423,8 +383,7 @@ const RegistrationForm = () => {
             onClick={() => setCount(count + 1)}
             disabled={count > 4}
           >
-            {english && 'Next'}
-            {spanish && 'Siguiente'}
+            {t('COMMON.ACTION_NEXT')}
           </button>
         ) : null}
       </div>
