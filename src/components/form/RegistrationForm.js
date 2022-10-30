@@ -1,15 +1,14 @@
 import React, { useEffect, useContext } from 'react';
-import { terms } from './termsOfService';
-import { spanishTerms } from './termsOfSpanish';
-import GenderDropdown from './GenderDropdown';
-import CountryDropdown from './CountryDropdown';
-import MonthDropdown from './MonthDropdown';
-import YearDropdown from './YearDropdown';
-import { AppContext } from './context';
+import { terms } from '../../termsOfService';
+import { spanishTerms } from '../../termsOfSpanish';
+import GenderDropdown from '../../GenderDropdown';
+import CountryDropdown from '../../CountryDropdown';
+import MonthDropdown from '../../MonthDropdown';
+import YearDropdown from '../../YearDropdown';
+import { AppContext } from '../../context';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import AppLayout from './AppLayout';
 
-const App = () => {
+const RegistrationForm = () => {
   const {
     count,
     setCount,
@@ -53,7 +52,7 @@ const App = () => {
   }, [isSubmit]);
 
   return (
-    <AppLayout>
+    <>
       {formLoader && Object.keys(formErrors).length === 0 && isSubmit && (
         <div className="registration-complete">
           {english ? 'Registration Complete' : 'Registro Completo'}
@@ -429,8 +428,8 @@ const App = () => {
           </button>
         ) : null}
       </div>
-    </AppLayout>
+    </>
   );
 };
 
-export default App;
+export default RegistrationForm;

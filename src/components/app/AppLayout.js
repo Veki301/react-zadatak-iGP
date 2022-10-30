@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import { AppContext } from './context';
+import { AppContext } from '../../context';
 
 const AppLayout = ({ children }) => {
   const { loading, setLoading } = useContext(AppContext);
