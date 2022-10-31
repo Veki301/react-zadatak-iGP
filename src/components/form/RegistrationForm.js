@@ -5,10 +5,10 @@ import MonthDropdown from '../../MonthDropdown';
 import YearDropdown from '../../YearDropdown';
 import { AppContext } from '../../context';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import LocaleService from '../../service/locale/LocaleService';
+import { t } from '../app/App';
+import LanguagePicker from '../app/LanguagePicker';
 
 const RegistrationForm = () => {
-  const t = LocaleService.translate;
   const {
     count,
     setCount,
@@ -19,8 +19,6 @@ const RegistrationForm = () => {
     isSubmit,
     handleChange,
     handleSubmit,
-    handleEnglish,
-    handleSpanish,
     loadingStep,
     setLoadingStep,
     formLoader,
@@ -50,17 +48,7 @@ const RegistrationForm = () => {
           {t('FORM.REGISTRATION_COMPLETE')}
         </div>
       )}
-      {count < 4 ? (
-        <div className="language-container">
-          <button onClick={handleEnglish} className="eng-btn"></button>
-          <button onClick={handleSpanish} className="spa-btn"></button>
-        </div>
-      ) : (
-        <div className="language-container">
-          <button onClick={handleEnglish} className="eng-btn"></button>
-          <button onClick={handleSpanish} className="spa-btn"></button>
-        </div>
-      )}
+      <LanguagePicker />
 
       <div className="app">
         <div className="progressBar-container">

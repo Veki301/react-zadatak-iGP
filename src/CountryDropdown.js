@@ -2,15 +2,14 @@ import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from './context';
-import { LocaleContext } from './components/app/LocaleProvider';
+import { useLocale } from './components/app/App';
 import { countries as enCountries } from './service/locale/messages/en';
 import { countries as esCountries } from './service/locale/messages/es';
-import LocaleService from './service/locale/LocaleService';
+import { t } from './components/app/App';
 
 const CountryDropdown = () => {
-  const t = LocaleService.translate;
   const { selectedCountry, setSelectedCountry } = useContext(AppContext);
-  const { locale } = useContext(LocaleContext);
+  const { locale } = useLocale();
   const [isActive, setIsActive] = useState(false);
   // rethink countryList
   const countryList = locale === 'en' ? enCountries : esCountries;

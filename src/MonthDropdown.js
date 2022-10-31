@@ -2,10 +2,9 @@ import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from './context';
-import LocaleService from './service/locale/LocaleService';
+import { t } from './components/app/App';
 
 const MonthDropdown = () => {
-  const t = LocaleService.translate;
   const { selectedMonth, setSelectedMonth } = useContext(AppContext);
   const [isActive, setIsActive] = useState(false);
   const options = [
