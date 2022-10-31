@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import PropagateLoader from 'react-spinners/PropagateLoader';
-import { AppContext } from '../../context';
+import React, { useEffect } from 'react';
+import Loader from '../common/loading/Loader';
+import { useLoading } from '../common/loading/LoadingContext';
 
 const AppLayout = ({ children }) => {
-  const { loading, setLoading } = useContext(AppContext);
+  const { loading, setLoading } = useLoading();
 
   useEffect(() => {
     setLoading(true);
@@ -14,31 +14,20 @@ const AppLayout = ({ children }) => {
   }, []);
 
   return (
-    <>
-      <div className="container-whole">
-        {loading ? (
-          <PropagateLoader
-            className="loader"
-            size={30}
-            color={'#002D62'}
-            loading={loading}
-          />
-        ) : (
-          <>
-            <div className="left-side-nav">
-              <div className="image-container">
-                <img
-                  src="https://i.imgur.com/uR4AR4i.png"
-                  alt="logo"
-                  className="logo-image"
-                />
-              </div>
-            </div>
-            <div className="right-side-nav">{children}</div>
-          </>
-        )}
-      </div>
-    </>
+    <div className="container-whole">
+      <Loader isLoading={loading}>
+        <div className="left-side-nav">
+          <div className="image-container">
+            <img
+              src="https://i.imgur.com/uR4AR4i.png"
+              alt="logo"
+              className="logo-image"
+            />
+          </div>
+        </div>
+        <div className="right-side-nav">{children}</div>
+      </Loader>
+    </div>
   );
 };
 

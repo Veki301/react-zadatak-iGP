@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppProvider } from '../../context';
 import RegistrationForm from '../form/RegistrationForm';
 import AppLayout from './AppLayout';
 import LocaleService from '../../service/locale/LocaleService';
 import MESSAGES from '../../service/locale/messages';
 import ErrorBoundary from '../common/ErrorBoundary';
+import { LoadingProvider } from '../common/loading/LoadingContext';
 
 const defaultLocale = 'en';
 
@@ -24,9 +25,11 @@ const App = () => {
     <ErrorBoundary>
       <AppProvider>
         <LocaleContext.Provider value={{ locale, setLocale }}>
-          <AppLayout>
-            <RegistrationForm />
-          </AppLayout>
+          <LoadingProvider>
+            <AppLayout>
+              <RegistrationForm />
+            </AppLayout>
+          </LoadingProvider>
         </LocaleContext.Provider>
       </AppProvider>
     </ErrorBoundary>
