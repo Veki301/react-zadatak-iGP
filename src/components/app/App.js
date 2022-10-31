@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { AppProvider } from '../../context';
-import RegistrationForm from '../form/RegistrationForm';
 import AppLayout from './AppLayout';
 import LocaleService from '../../service/locale/LocaleService';
 import MESSAGES from '../../service/locale/messages';
 import ErrorBoundary from '../common/ErrorBoundary';
 import { LoadingProvider } from '../common/loading/LoadingContext';
+import AppView from './AppView';
 
 const defaultLocale = 'en';
 
@@ -27,7 +27,7 @@ const App = () => {
         <LocaleContext.Provider value={{ locale, setLocale }}>
           <LoadingProvider>
             <AppLayout>
-              <RegistrationForm />
+              <AppView />
             </AppLayout>
           </LoadingProvider>
         </LocaleContext.Provider>
